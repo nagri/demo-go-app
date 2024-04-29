@@ -32,7 +32,7 @@ type Joke struct {
 
 const jokeAPI = "https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Pun,Spooky,Christmas?blacklistFlags=religious,racist"
 
-func GetJoke() (*Joke, error) {
+func (j Joke) GetJoke() (*Joke, error) {
 
 	req, _ := http.NewRequest("GET", jokeAPI, nil)
 
@@ -43,6 +43,7 @@ func GetJoke() (*Joke, error) {
 	defer res.Body.Close()
 	body, _ := io.ReadAll(res.Body)
 	joke := &Joke{}
+	fmt.Println(string(body))
 	err = json.Unmarshal(body, joke)
 	if err != nil {
 		fmt.Println(err)

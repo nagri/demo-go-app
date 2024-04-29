@@ -4,6 +4,10 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/nagri/demo-go-app/internal/app/jokesapp/mock_jokesapp"
+	"github.com/nagri/demo-go-app/internal/pkg/jokesapi"
+	"go.uber.org/mock/gomock"
 )
 
 func TestMain(t *testing.T) {
@@ -18,13 +22,6 @@ func TestMain(t *testing.T) {
 	// 	Lang:     "en",
 	// }
 
-	// t.Run("Mock Joke API call", func(t *testing.T) {
-	// 	request, _ := http.NewRequest(http.MethodGet, "/", nil)
-	// 	response := httptest.NewRecorder()
-
-	// 	twoPartJokeStub.ServeHTTP(response, request)
-	// })
-
 	t.Run("Test if Handler is running on /ping", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/ping", nil)
 		response := httptest.NewRecorder()
@@ -35,6 +32,16 @@ func TestMain(t *testing.T) {
 		want := "pong"
 		assertCorrectMessage(t, got, want)
 	})
+
+}
+
+func TestJokeAPI(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	mo := mock_jokesapp.NewMockJokeinterface(ctrl)
+
+	mo.EXPECT().GetJoke().Return(&jokesapi.Joke{}, nil)
+	mo.GetJoke()
 
 }
 

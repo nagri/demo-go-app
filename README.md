@@ -9,3 +9,5 @@ This is the v1 version of the application.
 The tags will update automatically with Github Actions.
 
 This should auto merge.
+
+Dummy

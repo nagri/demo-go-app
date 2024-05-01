@@ -33,5 +33,3 @@ func FetchJoke(w http.ResponseWriter, j Jokeinterface) {
 
 	}
 }
-
-a

@@ -5,3 +5,5 @@ This go program interfaces with https://v2.jokeapi.dev API and returns a joke to
 This is the v1 version of the application.
 
 The tags will update automatically with Github Actions.
+
+This should auto merge.
